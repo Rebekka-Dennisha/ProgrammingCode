@@ -1,0 +1,27 @@
+3.	Given two integers, find the hamming distance between two integers. Hamming distance between two integers is the number of bits that are different at the same position in both numbers.
+Input:
+3 14
+Output:
+3
+
+
+CODING...:
+
+
+#include<stdio.h>
+int hamming_distance(int number1,int number2){
+    int exor=number1^number2;
+    int count=0;
+    while(exor!=0){
+        count+=exor&1;
+        exor>>=1;
+    }
+    return count;
+    
+}
+int main(){
+    int number1,number2,hamdis;
+    scanf("%d %d",&number1,&number2);
+    hamdis=hamming_distance(number1,number2);
+    printf("%d",hamdis);
+}
