@@ -1,0 +1,42 @@
+3.Given a maximum of 100 digit numbers as input, find the difference between the sum of odd and even position digits
+Test Cases
+Case 1
+•	Input: 4567
+•	Expected Output: 2
+Explanation : Odd positions are 4 and 6 as they are pos: 1 and pos: 3, both have sum 10. Similarly, 5 and 7 are at even positions pos: 2 and pos: 4 with sum 12. Thus, difference is 12 – 10 = 2
+
+
+Coding:...
+
+#include <stdio.h>
+
+int difference(char num[]) {
+    int diff = 0, odd_sum = 0, even_sum = 0;
+    
+    for (int i = 0; num[i] != '\0'; i++) {
+        int digit = num[i] - '0'; // Convert character to actual integer
+        
+       
+        if (i % 2 == 0) {
+            odd_sum += digit;  // 1st, 3rd, 5th... positions
+        } else {
+            even_sum += digit; // 2nd, 4th, 6th... positions
+        }
+    }
+    
+    diff = (odd_sum > even_sum) ? (odd_sum - even_sum) : (even_sum - odd_sum);
+    
+    printf("%d\n", diff);
+    return diff;
+}
+
+int main() {
+    // CORRECTION: Increased size to 101 to safely support up to 100 digits
+    char num[101]; 
+    
+    // CORRECTION: Use %s to read the string input safely
+    if (scanf("%s", num) != 1) return 0;
+    
+    difference(num);
+    return 0;
+}
