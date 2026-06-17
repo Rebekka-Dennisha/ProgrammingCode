@@ -1,0 +1,32 @@
+8.	Write a function to test if the given set of brackets are balanced or not.
+Input : {{}}{)([][]
+Coding:
+
+#include<stdio.h>
+int BracketCheacker(char s[]){
+    int stack[50];
+    int top=-1;
+    for(int i=0;s[i]!='\0';i++){
+        if(s[i]=='('||s[i]=='['||s[i]=='{'){
+            top++;
+            stack[top]=s[i];
+        }
+        else if(s[i]==')'||s[i]==']'||s[i]=='}'){
+            if(top==-1){
+                return 0;
+            }
+            else if((s[i]==')' && stack[top]=='(') ||(s[i]==']'&&stack[top]=='[')||(s[i]=='}'&&stack[top]=='{')){
+                top--;
+            }
+            else return 0;
+        }
+    }
+    if(top==-1) return 1;
+    else return 0;
+}
+int main(){
+    char s[50];
+    scanf("%[^\n]",&s);
+    if(BracketCheacker(s)) printf("Balanced");
+    else printf("Imbalanced");
+}
